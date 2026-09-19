@@ -1,4 +1,87 @@
+# =========================
+# Virtual Environments
+# =========================
 venv/
 .venv/
+env/
+ENV/
+
+# =========================
+# Environment Variables
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Python Cache
+# =========================
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# =========================
+# Build / Distribution
+# =========================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+# Jupyter Notebook
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# MacOS
+# =========================
+.DS_Store
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Testing
+# =========================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# Type Checking
+# =========================
+.mypy_cache/
+
+# =========================
+# Model Files (Optional)
+# Uncomment if models are large
+# =========================
+# *.pkl
+# *.joblib
+# *.h5
+# *.pt
+# *.pth
+# models/
+
+# =========================
+# Data Files (Optional)
+# Uncomment if datasets are large
+# =========================
+# data/
+# *.csv
+# *.xlsx
+
+# =========================
+# Secrets / API Keys
+# =========================
+secrets.json
+credentials.json
+config.json
