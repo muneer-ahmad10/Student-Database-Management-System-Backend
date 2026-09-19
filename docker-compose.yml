@@ -1,0 +1,41 @@
+services:
+  student-db-api:
+    build: .
+    container_name: student_db_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      # Defaults; override via .env. Points SQLite + Chroma at mounted volumes.
+      DATABASE_URL: sqlite:////app/data/student_management.db
+      CHROMA_PERSIST_DIR: /app/chroma_store
+    volumes:
+      - db_data:/app/data
+      - chroma_data:/app/chroma_store
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # --- Optional: swap SQLite for Postgres by uncommenting this service and
+  # setting DATABASE_URL=postgresql+psycopg2://student:studentpass@postgres:5432/student_db
+  # postgres:
+  #   image: postgres:16-alpine
+  #   container_name: student_db_postgres
+  #   environment:
+  #     POSTGRES_USER: student
+  #     POSTGRES_PASSWORD: studentpass
+  #     POSTGRES_DB: student_db
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+  chroma_data:
+  # postgres_data:
